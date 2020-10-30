@@ -1,0 +1,8 @@
+domain: devopsico.com
+layout: ansible.sdk.operatorframework.io/v1
+projectName: operator-ansible-pocproject
+resources:
+- group: app
+  kind: PocProject
+  version: v1
+version: 3-alpha

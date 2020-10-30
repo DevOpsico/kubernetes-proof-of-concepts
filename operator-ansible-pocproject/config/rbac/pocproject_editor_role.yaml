@@ -1,0 +1,24 @@
+# permissions for end users to edit pocprojects.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pocproject-editor-role
+rules:
+- apiGroups:
+  - app.devopsico.com
+  resources:
+  - pocprojects
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - app.devopsico.com
+  resources:
+  - pocprojects/status
+  verbs:
+  - get

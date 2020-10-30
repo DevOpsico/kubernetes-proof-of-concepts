@@ -1,0 +1,6 @@
+apiVersion: app.devopsico.com/v1
+kind: PocProject
+metadata:
+  name: pocproject-sample
+spec:
+  foo: bar
