@@ -1,2 +1,4 @@
 ---
-# defaults file for PocProject
+# defaults file for Memcached
+replicas: 1
+image: gcr.io/google-containers/echoserver
