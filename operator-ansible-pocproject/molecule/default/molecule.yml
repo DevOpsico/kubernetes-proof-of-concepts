@@ -10,6 +10,7 @@ platforms:
   - name: cluster
     groups:
       - k8s
+
 provisioner:
   name: ansible
   lint: |

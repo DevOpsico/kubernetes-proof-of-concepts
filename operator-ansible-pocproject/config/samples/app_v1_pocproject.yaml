@@ -1,7 +1,7 @@
 apiVersion: app.devopsico.com/v1
 kind: PocProject
 metadata:
-  name: pocproject-sample
+  name: my-echo-server
 spec:
   image: gcr.io/google-containers/echoserver
   replicas: 2

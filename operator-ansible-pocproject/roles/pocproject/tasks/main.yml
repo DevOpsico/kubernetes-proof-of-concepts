@@ -1,21 +1,36 @@
 ---
-- name: "start {{ ansible_operator_meta.name }}"
+- name: "Debug all variables"
+  debug:
+    var: hostvars[inventory_hostname]
+
+- name: "Inspect before start Deployment"
+  debug:
+    msg: |
+      "name: {{ ansible_operator_meta.name }}, {{ ansible_operator_meta.namespace }}"
+      "image: {{ image }}"
+
+- name: "start testing {{ ansible_operator_meta.name }}"
   community.kubernetes.k8s:
     definition:
-      kind: Deployment
       apiVersion: apps/v1
+      kind: Deployment
       metadata:
-        name: "{{ ansible_operator_meta.name }}-pocproject"
-        namespace: "{{ ansible_operator_meta.namespace }}"
+        name: "{{ ansible_operator_meta.name }}-deployment"
+        namespace: '{{ ansible_operator_meta.namespace }}'
+        labels:
+          app: "{{ ansible_operator_meta.name }}"
       spec:
         replicas: "{{replicas}}"
         selector:
-          app: "{{ ansible_operator_meta.name }}"
+          matchLabels:
+            app: "{{ ansible_operator_meta.name }}"
         template:
           metadata:
             labels:
               app: "{{ ansible_operator_meta.name }}"
           spec:
             containers:
-            - name: "{{ ansible_operator_meta.name }}-pocproject"
+            - name: "{{ ansible_operator_meta.name }}"
               image: "{{ image }}"
+              ports:
+              - containerPort: 80
